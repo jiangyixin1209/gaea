@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gaea-sample</artifactId>
+    <description>Gaea案例</description>
 
 
 </project>
