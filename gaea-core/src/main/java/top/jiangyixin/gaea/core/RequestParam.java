@@ -4,13 +4,27 @@ import java.net.Proxy;
 import java.util.Map;
 
 /**
- * TODO
+ * 请求参数
  *
  * @author jiangyixin
  * @version 1.0
  * @date 2020/12/21
  */
 public class RequestParam {
+    
+    /**
+     * 请求方法
+     */
+    public enum RequestType {
+        /**
+         * GET请求
+         */
+        GET,
+        /**
+         * POST请求
+         */
+        POST
+    }
 
     private String url;
     private Map<String, String> paramMap;
@@ -20,11 +34,17 @@ public class RequestParam {
     private String referer;
     private int timeoutMillis;
     private Proxy proxy;
+    private boolean isValidateTls;
+    private RequestType requestType;
 
     public RequestParam() {
     }
 
-    public RequestParam(String url, Map<String, String> paramMap, Map<String, String> cookieMap, Map<String, String> headerMap, String userAgent, String referer, int timeoutMillis, Proxy proxy) {
+    public RequestParam(String url, Map<String, String> paramMap,
+                        Map<String, String> cookieMap, Map<String, String> headerMap,
+                        String userAgent, String referer, int timeoutMillis,
+                        Proxy proxy, boolean isValidateTls,
+                        RequestType requestType) {
         this.url = url;
         this.paramMap = paramMap;
         this.cookieMap = cookieMap;
@@ -33,6 +53,8 @@ public class RequestParam {
         this.referer = referer;
         this.timeoutMillis = timeoutMillis;
         this.proxy = proxy;
+        this.isValidateTls = isValidateTls;
+        this.requestType = requestType;
     }
 
     public String getUrl() {
@@ -98,18 +120,20 @@ public class RequestParam {
     public void setProxy(Proxy proxy) {
         this.proxy = proxy;
     }
-
-    @Override
-    public String toString() {
-        return "RequestParam{" +
-                "url='" + url + '\'' +
-                ", paramMap=" + paramMap +
-                ", cookieMap=" + cookieMap +
-                ", headerMap=" + headerMap +
-                ", userAgent='" + userAgent + '\'' +
-                ", referer='" + referer + '\'' +
-                ", timeoutMillis=" + timeoutMillis +
-                ", proxy=" + proxy +
-                '}';
+    
+    public boolean isValidateTls() {
+        return isValidateTls;
+    }
+    
+    public void setValidateTls(boolean validateTls) {
+        isValidateTls = validateTls;
+    }
+    
+    public RequestType getRequestType() {
+        return requestType;
+    }
+    
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
     }
 }
